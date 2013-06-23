@@ -3,7 +3,9 @@
 
 ## Usage
 
-  bash <(curl -fsSL https://raw.github.com/sparanoid/java-zapper-for-osx/master/java-zapper)
+```shell
+  bash <(curl -fsSL https://raw.github.com/sparanoid/java-zapper-for-osx/go)
+```
 
 ## Author
 
