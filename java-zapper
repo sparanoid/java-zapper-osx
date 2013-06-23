@@ -1,0 +1,91 @@
+#!/bin/bash
+function ask {
+  while true; do
+
+    if [ "${2:-}" = "Y" ]; then
+      prompt="Y/n"
+      default=Y
+    elif [ "${2:-}" = "N" ]; then
+      prompt="y/N"
+      default=N
+    else
+      prompt="y/n"
+      default=
+    fi
+
+    # Ask the question
+    read -p "$1 [$prompt] " REPLY
+
+    # Default?
+    if [ -z "$REPLY" ]; then
+      REPLY=$default
+    fi
+
+    # Check if the reply is valid
+    case "$REPLY" in
+      Y*|y*) return 0 ;;
+      N*|n*) return 1 ;;
+    esac
+
+  done
+}
+
+P="\n -"
+
+echo -e "\nJAVA SE ZAPPER FOR OS X"
+echo -e "-----------------------"
+echo -e "\nby Tunghsiao Liu - 2013\n"
+echo -e "You're going to remove all Java SE 6 (http://support.apple.com/downloads/#java) files, it's safe to run this script, but the process cannot be undone so use it at your own risk. Please see the readme before you run it:\n\n    https://github.com/sparanoid/Java-SE-Zapper-for-OSX \n"
+
+if ask "** Are you sure you want to do this?" N; then
+
+  if pkgutil --pkgs-plist | grep -q "com.apple.pkg.JavaForMacOSX107"; then
+
+    cd /
+    sudo rm -rf /System/Library/Java/JavaVirtualMachines/
+    echo -e "$HR$P Removing com.apple.pkg.JavaForMacOSX107..."
+
+    if pkgutil --pkgs-plist | grep -q "com.apple.pkg.JavaForMacOSX107"; then
+
+      echo -e "$P Removing com.apple.pkg.JavaMDNS...\n"
+      pkgutil --only-files --files com.apple.pkg.JavaMDNS | tr '\n' '\0' | xargs -n 1 -0 sudo rm -rf
+
+    fi
+
+    if ask "** Remove package receipts? (Safe and recommended)" Y; then
+
+      sudo pkgutil --forget com.apple.pkg.JavaForMacOSX107 >/dev/null 2>&1
+      sudo pkgutil --forget com.apple.pkg.JavaMDNS >/dev/null 2>&1
+      echo -e "$P Package receipts are successfully removed\n"
+
+      if ask "** Remove com.apple.pkg.JavaSecurity receipt? (See https://github.com/sparanoid/Java-SE-Zapper-for-OSX for more information)" N; then
+
+        sudo pkgutil --forget com.apple.pkg.JavaSecurity >/dev/null 2>&1
+        echo -e "$P Receipt of com.apple.pkg.JavaSecurity is successfully removed"
+
+      else
+
+        echo -e "$P Skipping com.apple.pkg.JavaSecurity..."
+
+      fi
+
+    else
+
+      echo -e "$P Skipping package receipts..."
+
+    fi
+
+    echo -e "$P Finished. All crappy Java files are gone"
+
+  else
+
+    echo -e "$P No Java SE installed, or the version you installed on your OS X is not supported.$P If you think it's incorrect, please submit your issue here:\n$P https://github.com/sparanoid/Java-SE-Zapper-for-OSX/issues"
+    echo -e "$P Process aborted!"
+
+  fi
+
+else
+
+  echo -e "$P Action canceled"
+
+fi
