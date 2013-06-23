@@ -2,10 +2,6 @@
 
 Zap ALL Java SE 6 files with only one command. OS X only.
 
-## How does it work?
-
-
-
 ## Usage
 
 Paste the following code at a Terminal prompt:
