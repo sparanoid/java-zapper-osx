@@ -25,7 +25,7 @@ OS X:
 - Mountain Lion - **Tested**
 - Lion - _Unknown_
 
-## “How do I make sure Java SE is successfuly uninstalled?”
+## “How do I make sure Java SE is successfully uninstalled?”
 
 Paste this at a Terminal prompt:
 
