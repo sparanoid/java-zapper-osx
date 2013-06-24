@@ -25,6 +25,22 @@ OS X:
 - Mountain Lion - **Tested**
 - Lion - _Unknown_
 
+## “How do I make sure Java SE is successfuly uninstalled?”
+
+Paste this at a Terminal prompt:
+
+```shell
+java -version
+```
+
+you'll see the following window:
+
+<img src="https://raw.github.com/sparanoid/rsrc/java-zapper-osx/01-java-zapper-osx.png" width="534" height="273" alt="Java SE Zapper for OS X">
+
+## “I want my Java SE back!”
+
+Please download and reinstall Java SE from [Apple - Support - Downloads](http://support.apple.com/downloads/#java).
+
 ## Author
 
 **Tunghsiao Liu**
