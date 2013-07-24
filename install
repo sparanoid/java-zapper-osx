@@ -43,7 +43,7 @@ if ask "** Are you sure you want to do this?" N; then
 
     cd /
     sudo rm -rf /System/Library/Java/JavaVirtualMachines/
-    echo -e "$HR$P Removing com.apple.pkg.JavaForMacOSX107..."
+    echo -e "$P Removing com.apple.pkg.JavaForMacOSX107..."
 
     if pkgutil --pkgs-plist | grep -q "com.apple.pkg.JavaForMacOSX107"; then
 
