@@ -7,7 +7,7 @@ Zap ALL Java SE 6 files with only one command. OS X only.
 Paste the following code at a Terminal prompt:
 
 ```shell
-bash <(curl -fsSL https://raw.github.com/sparanoid/java-zapper-for-osx/go)
+bash <(curl -fsSL https://raw.github.com/sparanoid/java-zapper-osx/go/install)
 ```
 
 The script explains what it will do and then pauses before it does it.
